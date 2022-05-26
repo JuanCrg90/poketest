@@ -101,6 +101,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    mocha (1.14.0)
     msgpack (1.5.1)
     nio4r (2.5.8)
     nokogiri (1.13.6-arm64-darwin)
@@ -211,6 +212,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  mocha
   poke-api-v2
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
