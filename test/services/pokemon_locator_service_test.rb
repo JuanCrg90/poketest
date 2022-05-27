@@ -10,26 +10,32 @@ class PokemonLocatorServiceTest < ActiveSupport::TestCase
   end
 
   test "when pokemon doesn't exists in the database" do
-    assert_difference "Pokemon.count" do
-      pokemon = PokemonLocatorService.new("pikachu").call
+    VCR.use_cassette("search_pikachu") do
+      assert_difference "Pokemon.count" do
+        pokemon = PokemonLocatorService.new("pikachu").call
 
-      assert_equal "25", pokemon.number
+        assert_equal "25", pokemon.number
+      end
     end
   end
 
   test "when pokemon is invalid" do
-    assert_no_difference "Pokemon.count", "No new pokemons are created" do
-      pokemon = PokemonLocatorService.new("pika").call
+    VCR.use_cassette("search_pika") do
+      assert_no_difference "Pokemon.count", "No new pokemons are created" do
+        pokemon = PokemonLocatorService.new("pika").call
 
-      assert_nil pokemon
+        assert_nil pokemon
+      end
     end
   end
 
   test "when pokemon with multiples names is invalid" do
-    assert_no_difference "Pokemon.count", "No new pokemons are created" do
-      pokemon = PokemonLocatorService.new("pika pika").call
+    VCR.use_cassette("search_pika_pika") do
+      assert_no_difference "Pokemon.count", "No new pokemons are created" do
+        pokemon = PokemonLocatorService.new("pika pika").call
 
-      assert_nil pokemon
+        assert_nil pokemon
+      end
     end
   end
 end
