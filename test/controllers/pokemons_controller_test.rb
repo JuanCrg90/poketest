@@ -27,6 +27,8 @@ class PokemonsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_difference "Pokemon.count" do
+      # Uncomment to use a mock for the PokemonLocatorService
+      # PokemonLocatorService.any_instance.expects(:call).returns(Pokemon.create(name: 'pikachu', number: '25'))
       post search_path, params: params
     end
 
