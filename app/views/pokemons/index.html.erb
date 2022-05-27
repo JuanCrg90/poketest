@@ -1,1 +1,13 @@
 <h1>Pokemon Test</h1>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= form_with url: "/search", method: :post do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :name %>
+  <%= form.submit "Search" %>
+<% end %>
